@@ -4,7 +4,6 @@
 //bring in express and body-parser.  Express is a node.js framework.
 var express = require('express');
 var bodyParser = require('body-parser');
-var 
 //instantiates an application by calling it's app() method.
 var app = express();
 
@@ -32,14 +31,15 @@ app.use(bodyParser.json());
 
 var exphbs = require('express-handlebars');
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+// app.set('view engine', 'handlebars');
 
 
 //points server to a series of route files.  They give server a "map" of how to respond when users visit or request data from various urls
 
-require('./routing/apiRoutes.js')(app);
-require('./routing/htmlRoutes.js')(app)
+//iife...Immediately Invoked Function Expression.  Immediately exporting the functions from those pages that expect to get an app.  We're passing in our instance of express.
+require('./app/routing/apiRoutes.js')(app);
+require('./app/routing/htmlRoutes.js')(app)
 
 app.listen(PORT, function(){
     console.log("App listening on PORT: " + PORT);

@@ -599,7 +599,7 @@
                 });
 
                 for (var i = 1; i < 11; i++) {
-                    if( $(`input[name=Question${i}]:checked`).val()=== undefined){
+                    if( $(`input[name=Question${i}]:checked`).val() === undefined){
                         isValid = false;
                     }
                 }
@@ -634,13 +634,14 @@
                 // AJAX post the data to the friends API.
                 $.post("/api/friends", userData, function (data) {
 
-                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                    // // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                    
                     $("#match-name").text(data.name);
                     $("#match-img").attr("src", data.photo);
 
                     // Show the modal with the best match
                     $("#results-modal").modal("toggle");
-
+              
                 });
             } else {
                 alert("Please fill out all fields before submitting!");
